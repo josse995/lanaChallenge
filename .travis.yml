@@ -1,0 +1,14 @@
+language: python
+python:
+  - "3.8.5"
+
+services:
+  - docker
+
+before_script:
+  - python --version
+  - pip install -U pip
+install:
+  - pip install -r requirements.txt
+script: 
+  - python -m unittest tests.tests # run tests
