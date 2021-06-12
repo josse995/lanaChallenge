@@ -25,7 +25,7 @@ class DAO(metaclass=Singleton):
             Product.code == code.strip()
         )
         # We are searching by code, which it is PK, so we expect no more than one result
-        if(queryResult):
+        if(queryResult.count() == 1):
             return queryResult[0]
         else:
             return None
