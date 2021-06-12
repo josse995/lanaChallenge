@@ -1,5 +1,6 @@
+from sqlalchemy.sql.expression import null
 from app.model.product import Product
-from app.db.connection import Connection
+from app.db.DAO import DAO
 import unittest
 import psycopg2
 
@@ -12,7 +13,6 @@ class TestMethods(unittest.TestCase):
             conn = psycopg2.connect(
                 "dbname='docker' user='root' host='localhost' password='password' connect_timeout=1")
             conn.close()
-            print("Connected to database successfully")
         except:
             print("Error while connecting database...")
 
@@ -20,8 +20,8 @@ class TestMethods(unittest.TestCase):
 
     def test_initializationDB(self):
         """Test that checks if the DB has all the necessary data"""
-        conn = Connection()
-        productsDB = conn.session.query(Product).all()
+        dao = DAO()
+        productsDB = dao.session.query(Product).all()
 
         product1 = Product(code='PEN', name='Lana Pen', price=5.00)
         product2 = Product(code='TSHIRT', name='Lana T-Shirt', price=20.00)
@@ -30,6 +30,16 @@ class TestMethods(unittest.TestCase):
         self.assertIn(product1, productsDB)
         self.assertIn(product2, productsDB)
         self.assertIn(product3, productsDB)
+
+    def test_getProduct(self):
+        """Test that gets the product by user's input"""
+        input = 'PEN'
+        dao = DAO()
+
+        elems = input.split(',')
+        for elem in elems:
+            product = dao.getProductByCode(elem)
+            self.assertTrue(product)
 
 
 if __name__ == '__main__':
