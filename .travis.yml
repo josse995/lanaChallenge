@@ -1,3 +1,7 @@
+language: python
+python:
+  - "3.8.5"
+
 services:
   - docker
 
@@ -5,10 +9,7 @@ services:
 #   only:
 #     - main
 
+before_script: pip install docker-compose
+
 script: 
-  - echo "Building Docker container..."
-  - docker-compose up -d #detach mode 
-  - echo "Waiting for Docker container to finish setting up..."
-  - ./db/waitForContainerSetup.sh
-  - echo "Connecting to app's docker and running tests..."
-  - docker exec -it lanachallenge_app sh -c "python3 -m unittest tests.tests"
+  - docker-compose run app sh -c "python3 -m unittest tests.tests"
