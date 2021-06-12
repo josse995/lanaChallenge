@@ -1,5 +1,5 @@
 # Lana Challenge
-Repository for challenge for lana interview
+Repository for lana's interview challenge.
 
 # Overview
 This project grants you the possibility to buy merchandising from Lana.

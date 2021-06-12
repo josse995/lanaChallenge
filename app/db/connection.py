@@ -7,10 +7,7 @@ class Connection(metaclass=Singleton):
     """Class to manage the connection with DB"""
 
     def __init__(self):
-        print("construyendo conexion...")
-        print("construyendo engine...")
         engine = create_engine('postgresql://root:password@localhost/docker')
-        print("construyendo session...")
         Session = sessionmaker(engine)
         self.session = Session()
 
