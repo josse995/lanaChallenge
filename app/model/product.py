@@ -12,6 +12,7 @@ class Product(Base):
     code = Column(String(10), primary_key=True)
     name = Column(String(), nullable=False)
     price = Column(Numeric(2, 10), nullable=False)
+    qty = 0
 
     def __str__(self):
         return self.name
