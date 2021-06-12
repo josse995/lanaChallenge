@@ -6,7 +6,7 @@ This project grants you the possibility to buy merchandising from Lana.
 Once all the products are introduced, the total amount will be shown.
 
 For limited time, there are some exclusive offers, so hurry up!
-- 3x2 on Pens
+- 2x1 on Pens
 - *25% of discount (buying 3 or more T-Shirts)
 
 *Discount will be applied only on T-Shirt, not in the total.
