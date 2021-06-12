@@ -21,34 +21,25 @@ This project had been build with
 - Docker >= 20.10.2
 
 ## Steps
-### 1.- Creating venv: 
 
-Open a terminal on the project's root path ```(./lanaChallenge/)``` and execute
 
-```
-python3 -m venv venv
-```
-
-### 2.- Install dependencies:
-
+### 1.- Run container
 On project's root path, execute:
 
 ```
-pip3 install -r requirements.txt
+sudo docker-compose up 
 ```
 
-### 3.- Run Db's container
+### 2.- Connect to python app's container
 On project's root path, execute:
 
 ```
-sudo docker-compose up -d
+docker exec -it lanachallenge_app /bin/bash
 ```
 
-*Option ```-d``` is for detached mode
+### 3.- Execute the program
 
-### 4.- Execute the program
-
-On project's root path, execute:
+Execute the following command without changing the path:
 
 ```
 python3 app/main.py
@@ -67,6 +58,4 @@ Once the program is running, you can introduced the products you want separated 
 
 Currently, the only available products are: Pens (PEN), T-Shirts (TSHIRT) and Coffee mugs (MUG).
 
-```
-Insert here example photos of console
-```
+<img src="https://github.com/josse995/lanachallenge/blob/dev/resources/example.png">
