@@ -42,8 +42,8 @@ services:
 
 networks: 
   backend:
+    external: true
     driver: "bridge"
     ipam:
       config:
         - subnet: 172.21.0.0/24
-          gateway: 172.21.0.1 
