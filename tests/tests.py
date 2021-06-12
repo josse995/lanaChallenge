@@ -1,3 +1,4 @@
+from app.model.basket import Basket
 from sqlalchemy.sql.expression import null
 from app.model.product import Product
 from app.db.DAO import DAO
@@ -46,10 +47,10 @@ class TestMethods(unittest.TestCase):
         product = Product(code='PEN', name='Lana Pen', price=5.00)
         basket = Basket()
 
-        self.assertTrue(basket.len() == 0)
+        self.assertTrue(basket.count() == 0)
 
         basket.addProduct(product)
-        self.assertTrue(basket.len() == 1)
+        self.assertTrue(basket.count() == 1)
 
 
 if __name__ == '__main__':
