@@ -2,6 +2,7 @@ version: '3'
 
 services:
   postgres:
+    container_name: lanachallenge_postgres
     image: postgres
     healthcheck:
       test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
@@ -20,7 +21,8 @@ services:
     ports:
       - "5432:5432"
     networks: 
-      - backend
+      backend:
+        ipv4_address: 172.21.0.2
   app:
     container_name: lanachallenge_app
     build: 
@@ -33,10 +35,15 @@ services:
       - postgres
     tty: true
     networks: 
-      - backend
+      backend:
+        ipv4_address: 172.21.0.3
     depends_on: 
       - postgres
 
 networks: 
   backend:
     driver: "bridge"
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+          gateway: 172.21.0.1 
