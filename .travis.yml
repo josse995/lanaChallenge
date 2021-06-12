@@ -11,6 +11,6 @@ script:
   - echo "Waiting for Docker container to finish setting up..."
   - ./db/waitForContainerSetup.sh
   - echo "Connecting to app's docker..."
-  - docker exec -it lanachallenge_app /bin/bash
+  - docker exec -it lanachallenge_app:latest /bin/bash
   - echo "Running tests..."
   - python3 -m unittest tests.tests # run tests
