@@ -15,5 +15,9 @@ before_script:
 install:
   - pip install -r requirements.txt
 script: 
+  - echo "Building Docker container..."
   - docker-compose up -d #detach mode 
+  - echo "Waiting for Docker container to finish setting up...
+  - ./db/waitForContainerSetup.sh
+  - echo "Running tests..."
   - python -m unittest tests.tests # run tests
