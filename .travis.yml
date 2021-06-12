@@ -12,7 +12,5 @@ services:
 before_script: pip install docker-compose
 
 script: 
-  - docker-compose build
-  - docker inspect lanachallenge_app | grep IPAddress
-  - docker inspect lanachallenge_postgres | grep IPAddress
+  - docker network create --driver=bridge --subnet=172.21.0.0/24 lanachallenge_network
   - docker-compose run app sh -c "python3 -m unittest tests.tests"

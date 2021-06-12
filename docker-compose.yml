@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   postgres:
@@ -21,7 +21,7 @@ services:
     ports:
       - "5432:5432"
     networks: 
-      backend:
+      lanachallenge_network:
         ipv4_address: 172.21.0.2
   app:
     container_name: lanachallenge_app
@@ -35,15 +35,11 @@ services:
       - postgres
     tty: true
     networks: 
-      backend:
+      lanachallenge_network:
         ipv4_address: 172.21.0.3
     depends_on: 
       - postgres
 
 networks: 
-  backend:
+  lanachallenge_network:
     external: true
-    driver: "bridge"
-    ipam:
-      config:
-        - subnet: 172.21.0.0/24
