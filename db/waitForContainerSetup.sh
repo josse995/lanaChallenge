@@ -8,10 +8,10 @@ MAX_TRIES=5
 # Return true-like values if and only if logs
 # contain the expected "ready" line
 function dbIsReady() {
-  docker-compose logs db | grep "PostgreSQL init process complete"
+  docker-compose logs | grep "PostgreSQL init process complete"
 }
 function socketIsReady() {
-  docker-compose logs web | grep "Listening on tcp:"
+  docker-compose logs | grep "Listening on IPv4:"
 }
 
 function waitUntilServiceIsReady() {
