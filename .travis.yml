@@ -13,6 +13,6 @@ before_script: pip install docker-compose
 
 script: 
   - docker network create --driver=bridge --subnet=172.21.0.0/24 lanachallenge_network
-  - docker-compose up postgres -d
+  - docker-compose up -d postgres
   - ./db/waitForContainerSetup.sh
   - docker-compose run app sh -c "python3 -m unittest tests.tests"
