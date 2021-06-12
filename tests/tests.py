@@ -41,6 +41,16 @@ class TestMethods(unittest.TestCase):
             product = dao.getProductByCode(elem)
             self.assertTrue(product)
 
+    def test_addProductToBasket(self):
+        """Test that adds a product to the basket"""
+        product = Product(code='PEN', name='Lana Pen', price=5.00)
+        basket = Basket()
+
+        self.assertTrue(basket.len() == 0)
+
+        basket.addProduct(product)
+        self.assertTrue(basket.len() == 1)
+
 
 if __name__ == '__main__':
     unittest.main()
