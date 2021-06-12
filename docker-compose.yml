@@ -22,6 +22,7 @@ services:
     networks: 
       - backend
   app:
+  container_name: lanachallenge_app
     build: 
       context: .
     ports:
