@@ -128,6 +128,20 @@ class TestMethods(unittest.TestCase):
         total = basket.calculateTotal()
         self.assertEqual(62.50, total)
 
+    def test_calculateTotalWithInput(self):
+        """Test that calculate the total of basket with mix of products introduced by console"""
+        input = "PEN, TSHIRT, PEN, PEN, MUG, TSHIRT, TSHIRT"
+        dao = DAO()
+
+        basket = Basket()
+        elems = input.split(',')
+        for elem in elems:
+            product = dao.getProductByCode(elem)
+            basket.addProduct(product)
+
+        total = basket.calculateTotal()
+        self.assertEqual(62.50, total)
+
 
 if __name__ == '__main__':
     unittest.main()

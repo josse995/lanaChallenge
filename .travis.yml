@@ -5,9 +5,9 @@ python:
 services:
   - docker
 
-# branches:
-#   only:
-#     - main
+branches:
+  only:
+    - main
 
 before_script: pip install docker-compose
 

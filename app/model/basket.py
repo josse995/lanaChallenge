@@ -15,7 +15,7 @@ class Basket():
             self.products[product.code]['qty'] += 1
         else:
             self.products[product.code] = {
-                'price': product.price, 'qty': 1}
+                'price': float(product.price), 'qty': 1}
 
     def calculateTotal(self):
         """Calculate the total from the basket"""
