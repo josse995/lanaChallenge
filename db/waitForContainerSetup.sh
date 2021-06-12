@@ -11,17 +11,17 @@ function dbIsReady() {
   docker-compose logs | grep "PostgreSQL init process complete"
 }
 function socketIsReady() {
-  docker-compose logs | grep "Listening on IPv4:"
+  docker-compose logs | grep "listening on IPv4"
 }
 
 function waitUntilServiceIsReady() {
   attempt=1
   while [ $attempt -le $MAX_TRIES ]; do
     if "$@"; then
-      echo "$2 container is up!"
+      echo "$2 is up!"
       break
     fi
-    echo "Waiting for $2 container... (attempt: $((attempt++)))"
+    echo "Waiting for $2 ... (attempt: $((attempt++)))"
     sleep 5
   done
 
@@ -31,5 +31,5 @@ function waitUntilServiceIsReady() {
   fi
 }
 
-waitUntilServiceIsReady dbIsReady "PostgreSQL"
+waitUntilServiceIsReady dbIsReady "PostgreSQL container"
 waitUntilServiceIsReady socketIsReady "TCP"
