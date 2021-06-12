@@ -33,6 +33,7 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+    #entrypoint: db/waitForContainerSetup.sh postgres 5432
     links: 
       - postgres
     tty: true
