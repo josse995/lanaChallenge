@@ -18,7 +18,6 @@ This project had been build with
 
 # How to execute
 ## Requirements
-- Python >= 3.8.5
 - Docker >= 20.10.2
 
 ## Steps

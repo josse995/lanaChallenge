@@ -1,23 +1,16 @@
-language: python
-python:
-  - "3.8.5"
-
 services:
   - docker
 
-branches:
-  only:
-    - main
+# branches:
+#   only:
+#     - main
 
-before_script:
-  - python --version  
-  - pip install -U pip
-install:
-  - pip install -r requirements.txt
 script: 
   - echo "Building Docker container..."
   - docker-compose up -d #detach mode 
   - echo "Waiting for Docker container to finish setting up..."
   - ./db/waitForContainerSetup.sh
+  - echo "Connecting to app's docker..."
+  - docker exec -it lanachanllenge_app_1 /bin/bash
   - echo "Running tests..."
-  - python -m unittest tests.tests # run tests
+  - python3 -m unittest tests.tests # run tests

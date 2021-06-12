@@ -1,3 +1,4 @@
+from app.db import constants
 from app.model.basket import Basket
 from sqlalchemy.sql.expression import null
 from app.model.product import Product
@@ -24,7 +25,12 @@ class TestMethods(unittest.TestCase):
         """Test that checks the connection with database"""
         try:
             conn = psycopg2.connect(
-                "dbname='docker' user='root' host='localhost' password='password' connect_timeout=1")
+                "dbname='{database}' user='{user}' host='{ip}' password='{password}' connect_timeout=1".format(
+                    database=constants.POSTGRES_DATABASE,
+                    user=constants.POSTGRES_USER,
+                    ip=constants.POSTGRES_IPADDRESS,
+                    password=constants.POSTGRES_PASSWORD
+                ))
             conn.close()
         except:
             print("Error while connecting database...")

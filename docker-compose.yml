@@ -18,7 +18,9 @@ services:
     volumes:
       - ./db/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
     ports:
-      - 5432:5432
+      - "5432:5432"
+    networks: 
+      - backend
   app:
     build: 
       context: .
@@ -26,4 +28,14 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+    links: 
+      - postgres
     tty: true
+    networks: 
+      - backend
+    depends_on: 
+      - postgres
+
+networks: 
+  backend:
+    driver: "bridge"
