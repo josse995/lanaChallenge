@@ -16,6 +16,11 @@ This project has been build with
 - Docker, with a PostgreSQL as DB
 - Travis-ci for continuos integration (Link to Travis-CI -> [link](https://www.travis-ci.com/github/josse995/lanaChallenge))
 
+# Structure
+This project consists in two docker:
+- **lanachallenge_app**, that contains the application in python and communicates with lanachallenge_postgres container
+- **lanachallenge_postgres**, that contains the postgres' database 
+
 # How to execute
 ## Requirements
 This project has been made with:
@@ -23,7 +28,6 @@ This project has been made with:
 - docker-compose >= 1.25.0
 
 ## Steps
-
 
 ### 1.- Run container
 On project's root path, execute:
