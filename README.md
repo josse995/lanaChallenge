@@ -11,14 +11,16 @@ For limited time, there are some exclusive offers, so hurry up!
 
 *Discount will be applied only on T-Shirt, not in the total.
 
-This project had been build with
+This project has been build with
 - Python
 - Docker, with a PostgreSQL as DB
-- Travis-ci for continuos integration
+- Travis-ci for continuos integration (Link to Travis-CI -> [link](https://www.travis-ci.com/github/josse995/lanaChallenge))
 
 # How to execute
 ## Requirements
+This project has been made with:
 - Docker >= 20.10.2
+- docker-compose >= 1.25.0
 
 ## Steps
 
@@ -45,11 +47,17 @@ Execute the following command without changing the path:
 python3 app/main.py
 ```
 
-### 4.1.- Execute the tests
+### 4.- Execute the tests
 If you want to run the tests, on project's root path, execute:
 
 ```
 python3 -m unittest tests.tests
+```
+
+Or if you don't want to follow all the steps, you can execute directly this command:
+
+```
+docker-compose run app sh -c "python3 -m unittest tests.tests"
 ```
 
 # How to run
