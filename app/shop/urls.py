@@ -4,12 +4,13 @@ from django.urls import path
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from product import views
+from shop import views
 
 router = DefaultRouter()
-router.register('', views.ProductViewSet)
+router.register('list', views.ProductViewSet)
+router.register('buy', views.BasketViewSet)
 
-app_name = 'product'
+app_name = 'shop'
 
 urlpatterns = [
     path('', include(router.urls)),
