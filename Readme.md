@@ -1,6 +1,6 @@
 # Lana Challenge
 Repository for lana's interview challenge.
-Here is the requirements -> [link](https://github.com/josse995/lanaChallenge/Readme.Requirements.md)
+Here is the requirements -> [link](https://github.com/josse995/lanaChallenge/blob/dev/Readme.Requirements.md)
 
 # Overview
 This project grants the possibility to buy merchandising from Lana.
