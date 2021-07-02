@@ -1,7 +1,9 @@
 
+from django.forms import fields
 from rest_framework import viewsets, status
-from rest_framework.decorators import action
+from rest_framework.decorators import action, detail_route, permission_classes
 from rest_framework.response import Response
+from rest_framework import permissions
 from core.models import Product, Basket, BasketItem
 from shop import serializers
 
@@ -20,24 +22,24 @@ class BasketViewSet(viewsets.ModelViewSet):
     queryset = Basket.objects.all()
     serializer_class = serializers.BasketSerializer
 
-    @action(detail=False)
+    @action(detail=False, methods=['post'])
     def add(self, request, **kwargs):
-        basketId = request.query_params.get('basket')
+        """Add to the basket (with basketId) the given product (with product code)"""
+        basketId = request.data.get('basket')
         if not basketId:
             return Response(data={'error': 'BasketId is missing.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        if Basket.objects.filter(id=basketId).exists():
-            basket = Basket.objects.get(id=basketId)
-        else:
-            basket = Basket.objects.create(id=basketId)
-            basket.save()
+        basket = Basket.objects.filter(id=basketId).first()
+        if not basket:
+            return Response(data={'error': 'The basket with id {0} not found on database.'
+                                  .format(basketId)}, status=status.HTTP_400_BAD_REQUEST)
 
-        productCode = request.query_params.get('product')
+        productCode = request.data.get('product')
         if not productCode:
             return Response(data={'error': 'Product code is not provided.'}, status=status.HTTP_400_BAD_REQUEST)
-        product = Product.objects.get(code=productCode)
+        product = Product.objects.filter(code=productCode).first()
         if not product:
-            return Response(data={'error': 'The product with code {1} not found on database.'
+            return Response(data={'error': 'The product with code {0} not found on database.'
                                   .format(productCode)}, status=status.HTTP_400_BAD_REQUEST)
 
         basketItem = BasketItem.objects.filter(
@@ -76,4 +78,4 @@ class BasketViewSet(viewsets.ModelViewSet):
                     discount = 0.25 * product.price * basketItem.qty
             total += product.price * basketItem.qty - discount
 
-        return Response({'total': decimal.Decimal('{0:.2f}'.format(total))}, status=status.HTTP_200_OK)
+        return Response({'total': '{0}{1}'.format(decimal.Decimal('{0:.2f}'.format(total)), '€')}, status=status.HTTP_200_OK)
